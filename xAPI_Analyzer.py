@@ -39,5 +39,67 @@ class Analyzer:
         return students, total_logs
 
     def analyze_watching_time(self):
-        
-        pass
+        #'시청기록', '시청중', '실행', '중지', '퀴즈/메시지 등장', '퀴즈/메시지 응답', '강의 평가 등장', '강의 평가 제출'
+        verb_list1 = []
+        verb_list2 = []
+        verb_list3 = []
+        verb_list4 = []
+        verb_list5 = []
+        verb_list6 = []
+        verb_list7 = []
+        verb_list8 = []
+        #학생별로 verb의 수를 정리
+        #학생을 한명 불러오고 그 학생의 verb의 수를 리스트에 기록
+        for student in self.unique_actor:
+
+            verb1_count = 0
+            verb2_count = 0
+            verb3_count = 0
+            verb4_count = 0
+            verb5_count = 0
+            verb6_count = 0
+            verb7_count = 0
+            verb8_count = 0
+
+            for verb in self.df_data[self.actor == student]['verb']:
+                #'시청기록', '시청중', '실행', '중지', '퀴즈/메시지 등장', '퀴즈/메시지 응답', '강의 평가 등장', '강의 평가 제출'
+                if verb == "시청기록":
+                    verb1_count += 1
+                elif verb == "시청중":
+                    verb2_count += 1
+                elif verb == "실행":
+                    verb3_count += 1
+                elif verb == "중지":
+                    verb4_count += 1
+                elif verb == "퀴즈/메시지 등장":
+                    verb5_count += 1
+                elif verb == "퀴즈/메시지 응답":
+                    verb6_count += 1
+                elif verb == "강의 평가 등장":
+                    verb7_count += 1
+                elif verb == "강의 평가 제출":
+                    verb8_count += 1
+
+            verb_list1.append(verb1_count)
+            verb_list2.append(verb2_count)
+            verb_list3.append(verb3_count)
+            verb_list4.append(verb4_count)
+            verb_list5.append(verb5_count)
+            verb_list6.append(verb6_count)
+            verb_list7.append(verb7_count)
+            verb_list8.append(verb8_count)
+
+        data1 = np.array(verb_list1)
+        data2 = np.array(verb_list2)
+        data3 = np.array(verb_list3)
+        data4 = np.array(verb_list4)
+        data5 = np.array(verb_list5)
+        data6 = np.array(verb_list6)
+        data7 = np.array(verb_list7)
+        data8 = np.array(verb_list8)
+
+        data_list = [data1, data2, data3, data4, data5, data6, data7, data8]
+
+        unique_actor = self.unique_actor
+
+        return unique_actor, data_list

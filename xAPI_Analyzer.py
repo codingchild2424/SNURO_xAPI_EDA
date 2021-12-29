@@ -38,6 +38,30 @@ class Analyzer:
 
         return students, total_logs
 
+    def personal_watching_time(self, actor):
+        
+        #actor의 df을 불러옴
+        df_actor = self.df_data[self.actor == actor]
+
+        sorted_df_actor = df_actor.sort_values(by = 'timestamp')
+
+        sorted_df_actor.replace({
+            '시청기록': 1,
+            '시청중': 2,
+            '실행': 3,
+            '중지': 4,
+            '퀴즈/메시지 등장': 5,
+            '퀴즈/메시지 응답': 6,
+            '강의 평가 등장': 7,
+            '강의 평가 제출': 8,
+            '재생바 클릭': 9
+        }, inplace= True)
+
+        verb_list = sorted_df_actor['verb']
+
+        return verb_list
+
+    #코드가 지저분한데, 나중에 정리할 필요가 있음
     def analyze_watching_time(self):
         #'시청기록', '시청중', '실행', '중지', '퀴즈/메시지 등장', '퀴즈/메시지 응답', '강의 평가 등장', '강의 평가 제출'
         verb_list1 = []

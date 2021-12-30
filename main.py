@@ -5,8 +5,8 @@ from visualizer import act_visualizer, watching_visualizer, personal_watching_vi
 from auto_word import make_LA_report
 
 #argument_parser로 변경하기
-data_path = "data/XAPI_npe_1215.json"
-#data_path = "data2/XAPI_5d933d.json" <- 데이터를 변경해도 잘 들어가는 것을 확인할 수 있음
+#data_path = "data/XAPI_npe_1215.json"
+data_path = "data2/XAPI_5d933d.json" #<- 데이터를 변경해도 잘 들어가는 것을 확인할 수 있음
 
 json_data = json_loader(data_path)
 
